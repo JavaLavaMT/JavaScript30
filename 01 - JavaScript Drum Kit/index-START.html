@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
+  <script src="js.js" type="text/javascript"></script>
 </head>
 <body>
-
+<button onclick="cleart()">Clear</button>
 
   <div class="keys">
     <div data-key="65" class="key">
@@ -56,36 +57,6 @@
   <audio data-key="74" src="sounds/snare.wav"></audio>
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
-
-<script>
-let keys = document.querySelectorAll('.key')
-
-const sound = event =>{
-  let key = document.querySelector(`.key[data-key="${event.keyCode}"]`)
-  let sounds = document.querySelector(`audio[data-key="${event.keyCode}"]`)
-
-  if (!sounds) return;
-
-  sounds.currentTime = 0;
-  sounds.play();
-  key.classList.add('playing');
-}
-
-function removeTran (event) {
-  console.log(event)
-  if (event.propertyName !== 'transform') return;
-  console.log(this)
-  this.classList.remove('playing')
-}
-
-keys.forEach((key) => {
-  key.addEventListener('transitionend', removeTran)
-})
-
-window.addEventListener('keydown', sound);
-
-</script>
-
 
 </body>
 </html>
